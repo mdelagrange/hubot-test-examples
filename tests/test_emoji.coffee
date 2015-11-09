@@ -6,12 +6,12 @@ helper = testSupport.helper('emoji')
 
 describe 'emoji', ->
 
-  room = null
+  utils = null
 
   beforeEach ->
     @room = helper.createRoom()
     @utils = testSupport.roomUtils(@room)
-    room = @room
+    utils = @utils
 
   afterEach ->
     @room.destroy()
@@ -31,10 +31,8 @@ describe 'emoji', ->
 
     it 'literally returns zero emoji', ->
       @utils.say('0 emoji').then =>
-        expect(@room.messages).to.eql [
-          ['user1', '0 emoji']
-          ['hubot', ':zero:']
-        ]
+        response = @utils.getFirstResponse()
+        expect(response).to.eql ':zero:'
 
   assertEmoji = (num) ->
     pat = ':[^:]+:'
@@ -42,6 +40,6 @@ describe 'emoji', ->
     exp += pat for [1..num]
     exp += '$'
     regex = new RegExp exp
-    sent = room.messages[1][1]
+    sent = utils.getFirstResponse()
     match = sent.match regex
     expect(match, "Message '#{sent}' did not return #{num} emoji.").to.be.ok

@@ -15,7 +15,4 @@ describe 'hello-world', ->
 
   it 'should reply to user', ->
     @utils.say('@hubot hi', user: 'alice').then =>
-      expect(@room.messages).to.eql [
-        ['alice', '@hubot hi']
-        ['hubot', '@alice hi']
-      ]
+      expect(@utils.getFirstResponse()).to.eql '@alice hi'
