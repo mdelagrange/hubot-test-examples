@@ -5,6 +5,7 @@
   "author": "Morgan Delagrange <mdelagrange@leapfrogonline.com>",
   "description": "A simple helpful robot for your Company",
   "dependencies": {
+    "emoji-random": "^0.1.2",
     "hubot": "^2.16.0",
     "hubot-diagnostics": "0.0.1",
     "hubot-google-images": "^0.2.3",
